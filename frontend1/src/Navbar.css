@@ -1,0 +1,19 @@
+/* Navbar.css */
+.menu-icon {
+    cursor: pointer;
+  }
+  
+  .nav-menu {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .nav-menu.active {
+    display: block;
+  }
+  
+  .nav-links {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
