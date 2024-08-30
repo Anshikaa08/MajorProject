@@ -69,17 +69,95 @@ app.post('/admin',(req,res)=>{
 
 //add details of user through admin
 
-app.post('/add-crud', (req, res) => {
-    const { aadharno, phone } = req.body;
-    const sql = 'INSERT INTO crud (aadhar, phone) VALUES (?, ?)';
-    db.query(sql, [aadharno, phone], (err, result) => {
+app.post('/add-details', (req, res) => {
+    console.log('Request body:', req.body); // Log the request body
+    const { aadhar, phone } = req.body;
+    const query = 'INSERT INTO crud (aadhar, phone) VALUES (?, ?)';
+    const values = [aadhar, phone];
+    db.query(query, values, (err, result) => {
         if (err) {
             console.error('Error inserting into crud table:', err);
-            return res.status(500).json("Failed to add to crud table");
+            res.status(500).send("Failed to add to crud table");
+        } else {
+            console.log('Insert result:', result); // Log the result
+            res.status(200).send("Crud details added successfully");
         }
-        res.status(200).json("Crud details added successfully");
     });
 });
+
+app.post('/add-user-details', (req, res) => {
+    const { Username, Name, Date_Of_Birth, Aadhaar_Number, Phone_Number, Password, Gender, Address, Country } = req.body;
+    
+    const query = 'INSERT INTO users (Username, Name, Date_Of_Birth, Aadhaar_Number, Phone_Number, Password, Gender, Address, Country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    const values = [Username, Name, Date_Of_Birth, Aadhaar_Number, Phone_Number, Password, Gender, Address, Country];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Error inserting user details:', err);
+            return res.status(500).send("Failed to add user details");
+        }
+        res.status(200).send("User added successfully");
+    });
+});
+
+//delete user
+
+  
+
+// app.delete('/DeleteUser', (req, res) => {
+//     const { aadhar, phone } = req.body;
+  
+//     const query = 'DELETE FROM crud WHERE aadhar = ? AND phone = ?';
+//     const query1 = 'DELETE FROM users WHERE aadhar = ? AND phone = ?';
+//     db.query(query, [aadhar, phone], (err, result) => {
+//       if (err) {
+//         console.error('Error deleting user:', err);
+//         return res.status(500).send('Server error');
+//       }
+//       if (result.affectedRows === 0) {
+//         return res.status(404).send('User not found');
+//       }
+//       res.send({ message: 'User deleted successfully' });
+//     });
+//   })
+
+app.delete('/DeleteUser', (req, res) => {
+    const { aadhar, phone } = req.body;
+  
+    const queryCrud = 'DELETE FROM crud WHERE aadhar = ? AND phone = ?';
+    const queryUsers = 'DELETE FROM users WHERE Aadhaar_Number = ? AND Phone_Number = ?';
+  
+    // Delete from the first table
+    db.query(queryCrud, [aadhar, phone], (err, result) => {
+      if (err) {
+        console.error('Error deleting user from crud table:', err);
+        return res.status(500).send('Server error');
+      }
+  
+      if (result.affectedRows === 0) {
+        return res.status(404).send('User not found in crud table');
+      }
+  
+      // If deletion from the first table is successful, delete from the second table
+      db.query(queryUsers, [Aadhar_Number, Phone_Number], (err, result) => {
+        if (err) {
+          console.error('Error deleting user from users table:', err);
+          return res.status(500).send('Server error');
+        }
+  
+        if (result.affectedRows === 0) {
+          return res.status(404).send('User not found in users table');
+        }
+  
+        res.send({ message: 'User deleted successfully from both tables' });
+      });
+    });
+  });
+  
+  //delete from users table
+
+  
+
 
 // Route to add data to `user` table
 

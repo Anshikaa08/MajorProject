@@ -1,82 +1,11 @@
-/*import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-const AddDetails = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
-
-  const handleSubmit = () => {
-    // Replace this with your actual logic to check user signup status
-    const isUserSignedUp = checkUserSignup(username, password);
-
-    if (isUserSignedUp) {
-      // User is already signed up, redirect to the signup page
-      navigate('/signup'); 
-    } else {
-      // User is not signed up, handle the case (e.g., show a message or redirect to signup)
-      navigate('/signup'); // Redirect to signup page to sign up
-    }
-  };
-
-  // Dummy function to simulate user check
-  const checkUserSignup = (username, password) => {
-    // Replace with actual logic to check if user is signed up
-    return username === 'user' && password === 'password'; // Example condition
-  };
-
-  return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 bg-white shadow-md rounded-lg">
-        <h1 className="text-2xl font-bold mb-6">Add Your Details</h1>
-        <div className="space-y-4">
-          <div>
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-              Username
-            </label>
-            <input
-              id="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-          </div>
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-          </div>
-          <button
-            onClick={handleSubmit}
-            className="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition ease-in-out duration-300"
-          >
-            Submit
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default AddDetails;*/
-
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
 const AddDetailsUser = () => {
     const [formData, setFormData] = useState({
-        username: '',
-        name: '',
-        dateOfBirth: '',
+        Username: '',
+        Name: '',
+        Date_Of_Birth: '',
         aadhaarNumber: '',
         phoneNumber: '',
         password: '',
@@ -95,7 +24,7 @@ const AddDetailsUser = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8081/add-details', formData)
+        axios.post('http://localhost:8081/add-user-details', formData)
             .then(res => {
                 console.log('Details added successfully:', res.data);
                 // Handle successful form submission here (e.g., redirect to another page)
@@ -107,87 +36,87 @@ const AddDetailsUser = () => {
     };
 
     return (
+        <>
         <div className='container mt-5'>
-            <h2>Add Your Details</h2>
             <form onSubmit={handleSubmit}>
                 <div className='mb-3'>
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="Username">Username</label>
                     <input
                         type="text"
-                        id="username"
-                        name="username"
+                        id="Username"
+                        name="Username"
                         placeholder='Enter Username'
                         className='form-control'
-                        value={formData.username}
+                        value={formData.Username}
                         onChange={handleChange}
                     />
                 </div>
                 <div className='mb-3'>
-                    <label htmlFor="name">Name</label>
+                    <label htmlFor="Name">Name</label>
                     <input
                         type="text"
-                        id="name"
-                        name="name"
+                        id="Name"
+                        name="Name"
                         placeholder='Enter Name'
                         className='form-control'
-                        value={formData.name}
+                        value={formData.Name}
                         onChange={handleChange}
                     />
                 </div>
                 <div className='mb-3'>
-                    <label htmlFor="dateOfBirth">Date of Birth</label>
+                    <label htmlFor="Date_Of_Birth">Date of Birth</label>
                     <input
                         type="date"
-                        id="dateOfBirth"
-                        name="dateOfBirth"
+                        id="Date_Of_Birth"
+                        name="Date_Of_Birth"
                         className='form-control'
-                        value={formData.dateOfBirth}
+                        value={formData.Date_Of_Birth}
                         onChange={handleChange}
                     />
                 </div>
                 <div className='mb-3'>
-                    <label htmlFor="aadhaarNumber">Aadhaar Number</label>
+                    <label htmlFor="Aadhaar_Number">Aadhaar Number</label>
                     <input
                         type="text"
-                        id="aadhaarNumber"
-                        name="aadhaarNumber"
+                        id="Aadhaar_Number"
+                        name="Aadhaar_Number"
                         placeholder='Enter Aadhaar Number'
                         className='form-control'
-                        value={formData.aadhaarNumber}
+                        value={formData.Aadhaar_Number}
                         onChange={handleChange}
                     />
                 </div>
                 <div className='mb-3'>
-                    <label htmlFor="phoneNumber">Phone Number</label>
+                    <label htmlFor="Phone_Number">Phone Number</label>
                     <input
                         type="tel"
-                        id="phoneNumber"
-                        name="phoneNumber"
+                        id="Phone_Number"
+                        name="Phone_Number"
                         placeholder='Enter Phone Number'
                         className='form-control'
-                        value={formData.phoneNumber}
+                        value={formData.phonPhone_NumbereNumber}
                         onChange={handleChange}
                     />
                 </div>
                 <div className='mb-3'>
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="Password">Password</label>
                     <input
-                        type="password"
-                        id="password"
-                        name="password"
+                        type="Password"
+                        id="Password"
+                        name="Password"
                         placeholder='Enter Password'
                         className='form-control'
-                        value={formData.password}
+                        value={formData.Password}
                         onChange={handleChange}
                     />
                 </div>
                 <div className='mb-3'>
-                    <label htmlFor="gender">Gender</label>
+                    <label htmlFor="Gender">Gender</label>
                     <select
-                        id="gender"
-                        name="gender"
+                        id="Gender"
+                        name="Gender"
                         className='form-control'
-                        value={formData.gender}
+                        value={formData.Gender}
                         onChange={handleChange}
                     >
                         <option value="">Select Gender</option>
@@ -197,31 +126,33 @@ const AddDetailsUser = () => {
                     </select>
                 </div>
                 <div className='mb-3'>
-                    <label htmlFor="address">Address</label>
+                    <label htmlFor="Address">Address</label>
                     <textarea
-                        id="address"
-                        name="address"
+                        id="Address"
+                        name="Address"
                         placeholder='Enter Address'
                         className='form-control'
-                        value={formData.address}
+                        value={formData.Address}
                         onChange={handleChange}
                     />
                 </div>
                 <div className='mb-3'>
-                    <label htmlFor="country">Country</label>
+                    <label htmlFor="Country">Country</label>
                     <input
                         type="text"
-                        id="country"
-                        name="country"
+                        id="Country"
+                        name="Country"
                         placeholder='Enter Country'
                         className='form-control'
-                        value={formData.country}
+                        value={formData.Country}
                         onChange={handleChange}
                     />
                 </div>
-                <button type="submit" className='btn btn-primary'>Submit</button>
+                <button 
+                type="submit" className='btn btn-primary'>Submit</button>
             </form>
         </div>
+        </>
     );
 };
 

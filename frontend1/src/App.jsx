@@ -10,9 +10,11 @@ import Admin from './Admin';
 import AddDetailsUser from './AddDetailsUser';
 import Services from './Services';
 import InnerHome from './InnerHome';
-//import User from './User'; // Import User component
+import DeleteUser from './DeleteUser';
+import UpdateDetails from './UpdateDetails'; // Import User component
 import AddDetails from './AddDetails';
 import Navbar from './Navbar';
+
 
 const App = () => {
   const backgroundStyle = {
@@ -25,7 +27,7 @@ const App = () => {
 
   return (
     <Router>
-      <div style={backgroundStyle}>
+      {/* <div style={backgroundStyle}> */}
         <NavbarWrapper/>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -37,8 +39,12 @@ const App = () => {
           <Route path="/innerhome" element={<InnerHome />}/>
           <Route path="/user-login" element={<AddDetailsUser />} /> 
           <Route path="/add-details" element={<AddDetails />} />
+          <Route path="/add-user-details" element={<AddDetailsUser />} />
+          <Route path="/deleteUser" element={<DeleteUser />}/>
+          <Route path="/updateUser" element={<UpdateDetails />}/>
+          
         </Routes>
-      </div>
+      {/* </div> */}
     </Router>
   );
 };

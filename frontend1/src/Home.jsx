@@ -10,7 +10,7 @@ const Home = () => {
     <div
       className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center"
       style={{ 
-        backgroundImage: `url(${BackgroundImage})`,
+        // backgroundImage: `url(${BackgroundImage})`,
         backgroundColor: '#000', // Fallback color
       }}
     >
