@@ -14,7 +14,7 @@ app.use(cookieParser());
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'Anshps08#',
+    password: '',
     database: 'diginet'
 });
 
